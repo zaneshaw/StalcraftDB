@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	html {
+		@apply bg-gray-900 text-gray-100;
+	}
+
+	h1 {
+		@apply text-7xl font-bold;
+	}
+
+	h3 {
+		@apply text-2xl;
+	}
+
+	a {
+		@apply transition;
+		box-shadow: 0 0.1rem 0 0 theme(colors.sky.400);
+	}
+
+	a:hover {
+		box-shadow: 0 0.3rem 0 0 theme(colors.sky.400);
+	}
+}
+
+@layer components {
+	.glow {
+		@apply font-semibold not-italic;
+		text-shadow: 0 0 4px theme(textColor.current);
+	}
+
+	.btn {
+		@apply rounded-xl bg-sky-400 py-2.5 px-4 text-lg font-semibold text-gray-900 transition-colors;
+	}
+
+	.btn:hover {
+		@apply bg-sky-500;
+	}
+
+	.btn-outline {
+		@apply !bg-transparent text-gray-100 ring-1 ring-inset ring-gray-100 transition;
+	}
+
+	.btn-outline:hover {
+		@apply ring-2;
+	}
+}
