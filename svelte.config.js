@@ -12,11 +12,7 @@ const config = {
 	],
 
 	kit: {
-		adapter: adapter(),
-		alias: {
-			"$lib": "lib",
-			"$lib/*": "lib/*"
-		}
+		adapter: adapter()
 	}
 };
 
