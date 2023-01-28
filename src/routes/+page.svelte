@@ -9,8 +9,8 @@
 	<div class="mx-auto flex h-full w-fit flex-col items-center justify-center gap-8">
 		<img src={image} alt="" class="w-60" />
 		<div class="flex flex-col gap-4">
-			<h1>Your spot for Stalcraft</h1>
-			<h1 class="text-sky-400">Weapons</h1>
+			<h1 class="my-0">Your spot for Stalcraft</h1>
+			<h1 class="text-sky-400 my-0">Weapons</h1>
 		</div>
 		<h3 class="w-3/5 text-gray-400">
 			Find all your favourite items on <em class="glow text-gray-100">StalcraftDB</em> via
