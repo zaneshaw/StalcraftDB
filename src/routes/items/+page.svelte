@@ -1,5 +1,12 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import ItemCard from "$lib/components/ItemCard.svelte";
+
+	export let data: any;
+	
+	onMount(() => {
+		console.log(data);
+	});
 </script>
 
 <div class="mx-auto w-2/3">
