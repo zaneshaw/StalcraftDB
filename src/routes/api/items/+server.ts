@@ -1,11 +1,21 @@
 import type { RequestHandler } from "./$types";
 import items from "$lib/db/items/global/listing.json";
 
-export const GET = (({ url }) => {
+export const GET = (async ({ url }) => {
+	const full = url.searchParams.get("full");
 	const itemID = url.searchParams.get("id");
-	const res = itemID
-		? items.find((item) => item.data.split("/").at(-1)?.split(".")[0] === itemID)
-		: { items };
+	let res;
+
+	if (itemID) {
+		const item = items.find((item) => item.data.split("/").at(-1)?.split(".")[0] === itemID);
+		if (full) {
+			res = await import(`../src/lib/db/items/global${item?.data}`);
+		} else {
+			res = item;
+		}
+	} else {
+		res = { items };
+	}
 
 	return new Response(JSON.stringify(res), {
 		status: 200
