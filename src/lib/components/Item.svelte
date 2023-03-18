@@ -1,9 +1,38 @@
 <script lang="ts">
 	export let data: any;
 
+	$: cleanData = data.infoBlocks
+		.map((infoBlock: any) => {
+			const cleanBlock = (infoBlock.elements ?? []).map((detail: any) => {
+				let value = null;
+				let string = null;
+				if (detail.type === "key-value") {
+					value = [detail.key.lines.en, detail.value.lines?.en ?? detail.value.text];
+					string = [detail.key.lines.en, detail.value.lines?.en ?? detail.value.text];
+				} else if (detail.type === "numeric") {
+					value = [detail.name.lines.en, detail.value];
+					string = [detail.name.lines.en, detail.value.toString()];
+				} else if (detail.type === "range") {
+					value = [detail.name.lines.en, [detail.min, detail.max]];
+					string = [
+						detail.name.lines.en,
+						`[${(detail.min >= 0 ? "+" : "") + detail.min}; ${
+							(detail.max >= 0 ? "+" : "") + detail.max
+						}]`
+					];
+				}
+				return { type: detail.type, value, string };
+			});
+			return cleanBlock;
+		})
+		.filter((block: any) => block.length > 0);
 </script>
 
-<div class="mx-auto flex w-72 flex-col bg-gray-800 text-left text-gray-400 text-sm">
+<!-- <div class="w-fit bg-gray-700 p-2">
+	<pre class="text-left">{JSON.stringify(cleanData, null, 4)}</pre>
+</div> -->
+
+<div class="mx-auto flex w-72 flex-col bg-gray-800 text-left text-sm text-gray-400">
 	<div class="border-b border-gray-400 py-2 px-3">
 		<h3 class="text-gray-100">Army First-Aid Kit</h3>
 		<span>Drops upon death</span>
