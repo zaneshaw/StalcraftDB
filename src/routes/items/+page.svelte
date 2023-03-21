@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from "svelte";
 	import ItemCard from "$lib/components/ItemCard.svelte";
 
 	export let data: any;

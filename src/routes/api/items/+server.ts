@@ -9,7 +9,8 @@ export const GET = (async ({ url }) => {
 	if (itemID) {
 		const item = items.find((item) => item.data.split("/").at(-1)?.split(".")[0] === itemID);
 		if (full) {
-			res = await import(`../src/lib/db/items/global${item?.data}`);
+			res = await import(`/src/lib/db/items/global${item?.data}`/* @vite-ignore */);
+			console.log(res);
 		} else {
 			res = item;
 		}
